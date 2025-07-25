@@ -1,0 +1,30 @@
+expose:
+  type: ingress
+  ingress:
+    hosts:
+      core: harbor.local
+      notary: notary.harbor.local
+    className: nginx
+    annotations:
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+
+externalURL: http://harbor.local
+
+harborAdminPassword: Admin12345
+
+persistence:
+  persistentVolumeClaim:
+    registry:
+      storageClass: ""
+      accessMode: ReadWriteOnce
+      size: 5Gi
+    chartmuseum:
+      storageClass: ""
+      accessMode: ReadWriteOnce
+      size: 2Gi
+
+resources:
+  requests:
+    memory: 256Mi
+    cpu: 250m
+
